@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import Post from "./Post.js";
 import router from "./router.js";
 const PORT = 5000;
+mongoose.set('strictQuery', false);
 const DB_URL = `mongodb+srv://user:user@cluster0.phluquy.mongodb.net/?retryWrites=true&w=majority`
 
 const app = express();
@@ -18,12 +19,5 @@ async function startApp(){
         console.log(e);
     }
 }
-
-
-/* app.get('/',(req, res) => {
-    console.log(req.body);
-    console.log(req.query); // Тело запроса
-  res.status(200).json("Сервер работает 123")  
-} ) */
 
 startApp()
