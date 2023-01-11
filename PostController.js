@@ -1,12 +1,12 @@
 import Post from "./Post.js";
 import PostService from "./PostService.js";
-class PostController {
 
+class PostController {
 async create(req, res){
         try {
-            const post = await PostService.create(req.body)
-            res.json(post)  
-            console.log(req.body);  
+            console.log(req.files); 
+            const post = await PostService.create(req.body, req.files.picture)
+            res.json(post)              
         } catch (e) {
             res.status(500).json(e)
         }
@@ -35,13 +35,14 @@ async update(req, res){
         const updatedPost = await PostService.update(req.body)
         return res.json(updatedPost);
         } catch (e) {
-                res.status(500).json(e)
+                res.status(500).json(e.message)
             }
         }
 
 async delete(req, res){
             try {
         const post = await PostService.delete(req.params.id)
+        return res.json(post)
             } catch (e) {
                 res.status(500).json(e)
             }
