@@ -14,14 +14,14 @@ class PostService {
 
   async getOne(id) {
     if (!id) {
-      throw new Error("Id не указан");
+      throw new Error("Id not specified");
     }
     const post = await Post.findById(id);
     return post;
   }
   async update(post) {
     if (!post._id) {
-      throw new Error("Id не указан");
+      throw new Error("Id not specified");
     }
     const updatedPost = await Post.findByIdAndUpdate(post._id, post, {
       new: true,
@@ -30,7 +30,7 @@ class PostService {
   }
   async delete(id) {
     if (!id) {
-      throw new Error("Id не указан");
+      throw new Error("Id not specified");
     }
     const post = await Post.findByIdAndDelete(id);
     return post;
